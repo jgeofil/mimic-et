@@ -4,11 +4,19 @@ data_loc = 'data/'
 
 dtf = "%Y-%m-%d %H:%M:%S"
 
+MIN_H = 24
+MAX_H = 24*21
+INTERVAL_H = 24
+
+MCB_MIN_HAMID = 100
+PMV_MIN_HAMID = 100
+
 admissions_loc = os.path.join(data_loc, 'ADMISSIONS.csv')
 prescriptions_loc = os.path.join(data_loc, 'PRESCRIPTIONS.csv')
 procedures_loc = os.path.join(data_loc, 'PROCEDURES_ICD.csv')
 procedures_mv_loc = os.path.join(data_loc, 'PROCEDUREEVENTS_MV.csv')
 items_loc = os.path.join(data_loc, 'D_ITEMS.csv')
+micro_loc = os.path.join(data_loc, 'MICROBIOLOGYEVENTS.csv')
 
 pr_type_col = 6
 pr_start_col = 4

@@ -3,11 +3,10 @@ from datetime import datetime
 from matplotlib import pyplot as plt
 import csv
 
-hours_min = 24
-hours_max = 600
 
 def s_to_hours(val):
 	return val/(60*60)
+
 
 hour_list = []
 hamids = {}
@@ -20,13 +19,11 @@ with open(settings.admissions_loc) as fin:
 		end = datetime.strptime(line[4], settings.dtf)
 		seconds = abs(end-start).total_seconds()
 		hours = s_to_hours(seconds)
-		if hours >= hours_min and hours < hours_max:
+		if hours >= settings.MIN_H and hours < settings.MAX_H:
 			hour_list.append(hours)
 			hamids[line[2]] = start
 
-
 plt.hist(hour_list, bins=10)
-#plt.yscale('log')
 plt.show()
 
 print(len(hamids))
