@@ -34,13 +34,17 @@ with open(settings.procedures_mv_loc) as fin:
 			if start >= 0 and start < settings.MAX_H/settings.INTERVAL_H:
 				obs.append((hamid, code, start))
 
-codes = [c[1] for c in obs]
+for i in [5,4,3,2,1,0]:
+	codes = [x[1] for x in obs]
+	codes_counts = Counter(codes)
+	codes_list = sorted(set(codes))
+	hamid_counts = helper.hamid_count(obs, codes_list)
+	obs = [(h,c,s) if hamid_counts[c] >= settings.PMV_MIN_HAMID else (h,c[:i],s) for h, c, s in obs]
+
+codes = [x[1] for x in obs]
 codes_counts = Counter(codes)
 codes_list = sorted(set(codes))
-
 hamid_counts = helper.hamid_count(obs, codes_list)
-
-codes_list = [x for x in codes_list if hamid_counts[x] >= settings.PMV_MIN_HAMID]
 
 codes_pos = {c: i for i, c in enumerate(codes_list)}
 
@@ -48,7 +52,7 @@ interval_counts = Counter(x[2] for x in obs)
 
 with open('out/procedure_mv_codes.tsv', 'w+') as fout:
 	for c in codes_list:
-		fout.write('{}\t{}\t{}\t{}\n'.format(c, codes_counts[c], hamid_counts[c], names[c]))
+		fout.write('{}\t{}\t{}\n'.format(c, codes_counts[c], hamid_counts[c]))
 
 with open('out/procedure_mv_steps.tsv', 'w+') as fout:
 	for c in range(settings.MAX_H//settings.INTERVAL_H):
@@ -63,4 +67,4 @@ for o in obs:
 	if code in codes_pos:
 		matrix[hamid_pos[hamid], codes_pos[code], start] = 1
 
-np.save('out/dims/procedure_mv_bin', matrix)
+np.save('out/dims/3-procedure_mv_bin', matrix)

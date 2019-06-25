@@ -58,4 +58,4 @@ for o in obs:
 	if code in codes_pos:
 		matrix[hamid_pos[hamid], codes_pos[code], start] = 1
 
-np.save('out/dims/microbiology_bin', matrix)
+np.save('out/dims/3-microbiology_bin', matrix)
