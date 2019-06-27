@@ -13,15 +13,15 @@ def main():
     # changed configuration to this instead of argparse for easier interaction
     CUDA = False
     SEED = 1
-    BATCH_SIZE = 128
+    BATCH_SIZE = 64
     LOG_INTERVAL = 10
-    EPOCHS = 10
-    WORKERS = 12
+    EPOCHS = 25
+    WORKERS = 10
+    LEARN_RATE = 1e-3
 
     # connections through the autoencoder bottleneck
     # in the pytorch VAE example, this is 20
-    ZDIMS = 20
-
+    ZDIMS = 30
 
     torch.manual_seed(SEED)
     if CUDA:
@@ -50,19 +50,21 @@ def main():
 
             # ENCODER
             # 28 x 28 pixels = 784 input pixels, 400 outputs
-            self.fc1 = nn.Linear(M, 200)
+            self.fc1 = nn.Linear(M, 100)
+            self.fc1a = nn.Linear(100, 100)
             # rectified linear unit layer from 400 to 400
             # max(0, x)
             self.relu = nn.ReLU()
-            self.fc21 = nn.Linear(200, ZDIMS)  # mu layer
-            self.fc22 = nn.Linear(200, ZDIMS)  # logvariance layer
+            self.fc21 = nn.Linear(100, ZDIMS)  # mu layer
+            self.fc22 = nn.Linear(100, ZDIMS)  # logvariance layer
             # this last layer bottlenecks through ZDIMS connections
 
             # DECODER
             # from bottleneck to hidden 400
-            self.fc3 = nn.Linear(ZDIMS, 200)
+            self.fc3 = nn.Linear(ZDIMS, 100)
+            self.fc3a = nn.Linear(100, 100)
             # from hidden 400 to 784 outputs
-            self.fc4 = nn.Linear(200, M)
+            self.fc4 = nn.Linear(100, M)
             self.sigmoid = nn.Sigmoid()
 
         def encode(self, x: Variable) -> (Variable, Variable):
@@ -82,7 +84,7 @@ def main():
             """
 
             # h1 is [128, 400]
-            h1 = self.relu(self.fc1(x))  # type: Variable
+            h1 = self.relu(self.fc1a(self.relu(self.fc1(x))))  # type: Variable
             return self.fc21(h1), self.fc22(h1)
 
         def reparameterize(self, mu: Variable, logvar: Variable) -> Variable:
@@ -121,6 +123,7 @@ def main():
                 #   and stddev 1 normal distribution that is 128 samples
                 #   of random ZDIMS-float vectors
                 eps = Variable(std.data.new(std.size()).normal_())
+                #eps = Variable(std.data.new(std.size()).cauchy_())
                 # - sample from a normal distribution with standard
                 #   deviation = std and mean = mu by multiplying mean 0
                 #   stddev 1 sample with desired std and mu, see
@@ -138,7 +141,7 @@ def main():
                 return mu
 
         def decode(self, z: Variable) -> Variable:
-            h3 = self.relu(self.fc3(z))
+            h3 = self.relu(self.fc3a(self.relu(self.fc3(z))))
             return self.sigmoid(self.fc4(h3))
 
         def forward(self, x: Variable) -> (Variable, Variable, Variable):
@@ -174,8 +177,7 @@ def main():
         return BCE + KLD
 
     # Dr Diederik Kingma: as if VAEs weren't enough, he also gave us Adam!
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
-
+    optimizer = optim.Adam(model.parameters(), lr=LEARN_RATE)
 
     def train(epoch):
         # toggle model to train mode
@@ -226,16 +228,17 @@ def main():
             recon_batch, mu, logvar = model(data)
             test_loss += loss_function(recon_batch, data, mu, logvar).data
             if i == 0:
-              n = min(data.size(0), 8)
+              n = min(data.size(0), 32)
               # for the first 128 batch of the epoch, show the first 8 input digits
               # with right below them the reconstructed output digits
               comparison = torch.cat([data[:n],
-                                      recon_batch.view(BATCH_SIZE, 1, 28, 28)[:n]])
+                                      recon_batch.view(BATCH_SIZE, M)[:n]])
+              comparison.detach().apply_(lambda x: 1 if x >= 0.5 else 0)
               save_image(comparison.data.cpu(),
                          'results/reconstruction_' + str(epoch) + '.png', nrow=n)
 
-        test_loss /= len(test_loader.dataset)
         print('====> Test set loss: {:.4f}'.format(test_loss))
+
 
 
     for epoch in range(1, EPOCHS + 1):
@@ -248,11 +251,12 @@ def main():
         if CUDA:
             sample = sample.cuda()
         sample = model.decode(sample).cpu()
+        sample.detach().apply_(lambda x: 1 if x >= 0.5 else 0)
 
         # save out as an 8x8 matrix of MNIST digits
         # this will give you a visual idea of how well latent space can generate things
         # that look like digits
-        save_image(sample.data.view(64, 1, 28, 28),
+        save_image(sample.data.view(64, M),
                    'results/sample_' + str(epoch) + '.png')
 
 if __name__ == "__main__":
