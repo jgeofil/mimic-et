@@ -81,7 +81,7 @@ def main():
 				nn.Linear(50, 50),
 				nn.ReLU(True),
 				nn.Linear(50, M),
-				nn.Sigmoid(),
+				nn.Tanh(),
 				# state size. (nc) x 64 x 64
 			)
 
@@ -189,7 +189,7 @@ def main():
 						'%s/real_samples.png' % opt.outf,
 						normalize=True)
 				fake = netG(fixed_noise)
-				vutils.save_image(fake.detach().apply_(lambda x: 1 if x >= 0.5 else 0),
+				vutils.save_image(fake.detach().apply_(lambda x: 1 if x >= 0 else 0),
 						'%s/fake_samples_epoch_%03d.png' % (opt.outf, epoch),
 						normalize=True)
 
