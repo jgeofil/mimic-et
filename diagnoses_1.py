@@ -19,7 +19,7 @@ with open(settings.diagnosis_loc) as fin:
 			if code != '':
 				obs.append((hamid, code, seq))
 
-for i in [3]:
+for i in [5,4,3,2,1]:
 	codes = [x[1] for x in obs]
 	codes_counts = Counter(codes)
 	codes_list = sorted(set(codes))
