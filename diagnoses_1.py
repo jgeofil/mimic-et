@@ -47,14 +47,14 @@ for h, c, s in obs:
 		k = int(seqs_pos[s])
 		count_matrix[i, j] += 1
 
-with open('out/diagnoses_codes.tsv', 'w+') as fout:
+with open('out/'+str(settings.DIA_MIN_HAMID)+'diagnoses_codes.tsv', 'w+') as fout:
 	for i, c in enumerate(codes_list):
 		per_hamid_count = np.count_nonzero(count_matrix[:, i])
 		fout.write('{}\t{}\t{}\n'.format(c, codes_counts[c], per_hamid_count))
 
-with open('out/diagnoses_counts.tsv', 'w+') as fout:
+with open('out/'+str(settings.DIA_MIN_HAMID)+'diagnoses_counts.tsv', 'w+') as fout:
 	for row in count_matrix:
 		row = [str(x) for x in row]
 		fout.write('\t'.join(row)+'\n')
 
-np.save('out/dims/2-diagnoses_counts', count_matrix)
+np.save('out/dims/2-'+str(settings.DIA_MIN_HAMID)+'diagnoses_counts', count_matrix)
