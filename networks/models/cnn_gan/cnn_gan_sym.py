@@ -10,7 +10,7 @@ import torch.utils.data
 import torchvision.utils as vutils
 from ...dataset import dataset as ds
 from ...util.plot import plot_gan
-from models.layers import PrintSize
+from ...models.layers import PrintSize
 
 def main():
 	parser = argparse.ArgumentParser()
