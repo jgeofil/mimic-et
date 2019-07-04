@@ -16,7 +16,7 @@ from layers import PrintSize
 
 def main():
 	parser = argparse.ArgumentParser()
-	parser.add_argument('--workers', type=int, help='number of data loading workers', default=8)
+	parser.add_argument('--workers', type=int, help='number of data loading workers', default=1)
 	parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
 	parser.add_argument('--nz', type=int, default=8, help='size of the latent z vector')
 	parser.add_argument('--ngf', type=int, default=64, help='size of the latent z vector')
