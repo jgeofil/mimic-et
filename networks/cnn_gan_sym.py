@@ -8,9 +8,10 @@ import torch.nn.parallel
 import torch.optim as optim
 import torch.utils.data
 import torchvision.utils as vutils
-from ...dataset import dataset as ds
-from ...util.plot import plot_gan
-from ...models.layers import PrintSize
+
+from dataset import dataset as ds
+from util.plot import plot_gan
+from layers import PrintSize
 
 def main():
 	parser = argparse.ArgumentParser()
