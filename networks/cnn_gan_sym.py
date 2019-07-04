@@ -211,7 +211,7 @@ def main():
 						'%s/real_samples.png' % filename,
 						normalize=True,pad_value=0.5)
 				fake = netG(fixed_noise)
-				fake = fake.detach().apply(lambda x: 1 if x > 0 else 0)
+				fake = fake.detach().gt(0)
 				vutils.save_image(fake,
 						'%s/fake_samples_epoch_%03d.png' % (filename, epoch),
 						normalize=True,pad_value=0.5)
