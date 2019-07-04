@@ -1,8 +1,7 @@
 from matplotlib import pyplot as plt
 
 def con_avg(l):
-	n = 5
-	return [sum(l[i:i+n])/n for i in range(0, len(l), n)]
+	return l
 
 def plot_gan(d_loss, g_loss, d_real, d_fake_pre, d_fake_post, out_folder):
 	plt.close()
