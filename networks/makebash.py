@@ -11,5 +11,5 @@ with open('run.sh', 'w+') as file:
 					for ngf in [16,32,64,128,256]:
 						fc += 1
 						line = 'python3 cnn_gan_sym.py --niter 150 --nz {} --batchSize {} --ngf {} --ndf {} --lr {} {}\n'\
-							.format(nz, batch, ngf, ndf, lr, '' if fc%60==0 else '&&')
+							.format(nz, batch, ngf, ndf, lr, '&' if fc%60==0 else '&&')
 						file.write(line)
