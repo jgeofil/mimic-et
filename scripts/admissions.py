@@ -52,10 +52,20 @@ plt.show()
 
 print(len(hamids))
 
+demo_list = []
+
+gender_dict = {'M': 0, 'F': 1}
+
 with open('out/admissions_start.tsv', 'w+') as fout:
 	for h, s, g, a in hamids:
+		demo_list.append([gender_dict[g], a])
 		fout.write('{}\t{}\t{}\t{}\n'.format(h, s, g, a))
+
+from sklearn.preprocessing import normalize, OneHotEncoder
+
+demo_list = normalize(demo_list,)
 
 import numpy as np
 
+np.save('out/dims/demographics.npy', demo_list)
 np.save('out/dims/2-admissions', hamids)

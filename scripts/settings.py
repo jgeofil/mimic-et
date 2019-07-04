@@ -1,6 +1,6 @@
 import os
 
-data_loc = 'data/'
+data_loc = './raw_data/'
 
 dtf = "%Y-%m-%d %H:%M:%S"
 
