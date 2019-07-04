@@ -13,6 +13,7 @@ from dataset import dataset as ds
 from util.plot import plot_gan
 from layers import PrintSize
 
+
 def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--workers', type=int, help='number of data loading workers', default=8)
