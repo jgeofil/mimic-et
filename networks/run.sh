@@ -148,7 +148,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 16 --ndf 256 --lr
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 32 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 64 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 128 --ndf 256 --lr 0.0002 &&
-python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 256 --ndf 256 --lr 0.0002 &
+python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 256 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 16 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 32 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 64 --ndf 16 --lr 0.0002 &&
@@ -248,7 +248,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 256 --ngf 16 --ndf 256 --l
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 256 --ngf 32 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 256 --ngf 64 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 256 --ngf 128 --ndf 256 --lr 0.0002 &&
-python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0002 &&
+python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0002 &
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 16 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 32 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 16 --ngf 64 --ndf 16 --lr 0.00005 &&
@@ -298,7 +298,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 16 --ndf 256 --lr
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 32 --ndf 256 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 64 --ndf 256 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 128 --ndf 256 --lr 0.00005 &&
-python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 256 --ndf 256 --lr 0.00005 &
+python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 32 --ngf 256 --ndf 256 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 64 --ngf 16 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 64 --ngf 32 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 4 --batchSize 64 --ngf 64 --ndf 16 --lr 0.00005 &&
@@ -448,7 +448,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 64 --ngf 16 --ndf 256 --lr
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 64 --ngf 32 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 64 --ngf 64 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 64 --ngf 128 --ndf 256 --lr 0.0005 &&
-python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 64 --ngf 256 --ndf 256 --lr 0.0005 &
+python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 64 --ngf 256 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 16 --ndf 16 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 32 --ndf 16 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 64 --ndf 16 --lr 0.0005 &&
@@ -498,7 +498,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 16 --ndf 256 --l
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 32 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 64 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 128 --ndf 256 --lr 0.0005 &&
-python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0005 &&
+python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0005 &
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 16 --ngf 16 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 16 --ngf 32 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 16 --ngf 64 --ndf 16 --lr 0.0002 &&
@@ -598,7 +598,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 16 --ndf 256 --l
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 32 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 64 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 128 --ndf 256 --lr 0.0002 &&
-python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 256 --ndf 256 --lr 0.0002 &
+python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 128 --ngf 256 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 16 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 32 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 8 --batchSize 256 --ngf 64 --ndf 16 --lr 0.0002 &&
@@ -898,7 +898,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 16 --ndf 256 --l
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 32 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 64 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 128 --ndf 256 --lr 0.0002 &&
-python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 256 --ndf 256 --lr 0.0002 &
+python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 256 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 16 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 32 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 64 --ndf 16 --lr 0.0002 &&
@@ -998,7 +998,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 256 --ngf 16 --ndf 256 --
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 256 --ngf 32 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 256 --ngf 64 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 256 --ngf 128 --ndf 256 --lr 0.0002 &&
-python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0002 &&
+python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0002 &
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 16 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 32 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 16 --ngf 64 --ndf 16 --lr 0.00005 &&
@@ -1048,7 +1048,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 16 --ndf 256 --l
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 32 --ndf 256 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 64 --ndf 256 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 128 --ndf 256 --lr 0.00005 &&
-python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 256 --ndf 256 --lr 0.00005 &
+python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 32 --ngf 256 --ndf 256 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 64 --ngf 16 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 64 --ngf 32 --ndf 16 --lr 0.00005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 16 --batchSize 64 --ngf 64 --ndf 16 --lr 0.00005 &&
@@ -1198,7 +1198,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 64 --ngf 16 --ndf 256 --l
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 64 --ngf 32 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 64 --ngf 64 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 64 --ngf 128 --ndf 256 --lr 0.0005 &&
-python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 64 --ngf 256 --ndf 256 --lr 0.0005 &
+python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 64 --ngf 256 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 16 --ndf 16 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 32 --ndf 16 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 64 --ndf 16 --lr 0.0005 &&
@@ -1248,7 +1248,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 16 --ndf 256 --
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 32 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 64 --ndf 256 --lr 0.0005 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 128 --ndf 256 --lr 0.0005 &&
-python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0005 &&
+python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 256 --ndf 256 --lr 0.0005 &
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 16 --ngf 16 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 16 --ngf 32 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 16 --ngf 64 --ndf 16 --lr 0.0002 &&
@@ -1348,7 +1348,7 @@ python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 16 --ndf 256 --
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 32 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 64 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 128 --ndf 256 --lr 0.0002 &&
-python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 256 --ndf 256 --lr 0.0002 &
+python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 128 --ngf 256 --ndf 256 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 16 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 32 --ndf 16 --lr 0.0002 &&
 python3 cnn_gan_sym.py --niter 150 --nz 32 --batchSize 256 --ngf 64 --ndf 16 --lr 0.0002 &&
