@@ -18,12 +18,12 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--workers', type=int, help='number of data loading workers', default=1)
 
-	parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
+	parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
 	parser.add_argument('--nz', type=int, default=8, help='size of the latent z vector')
 	parser.add_argument('--ngf', type=int, default=64, help='size of the latent z vector')
 	parser.add_argument('--ndf', type=int, default=64, help='size of the latent z vector')
 	parser.add_argument('--niter', type=int, default=25, help='number of epochs to train for')
-	parser.add_argument('--lr', type=float, default=0.00005, help='learning rate, default=0.0002')
+	parser.add_argument('--lr', type=float, default=0.0002, help='learning rate, default=0.0002')
 	parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 	parser.add_argument('--outf', default='./out/', help='folder to output images and model checkpoints')
 	parser.add_argument('--manualSeed', type=int, help='manual seed')
@@ -79,22 +79,22 @@ def main():
 		def __init__(self):
 			super(Generator, self).__init__()
 			self.main = nn.Sequential(
-				nn.ConvTranspose2d(nz, ngf * 4, (4, 1), (2, 1), 0, bias=False),
-				nn.BatchNorm2d(ngf * 4),
+				nn.ConvTranspose2d(nz, ngf * 8, (3, 3), (1, 1), 0, bias=False),
+				nn.BatchNorm2d(ngf * 8),
 				nn.ReLU(True),
 				# state size. (ngf*8) x 4 x 4
-				nn.ConvTranspose2d(ngf * 4, ngf * 2, (4, 4), (2, 2), 0, bias=False),
-				nn.BatchNorm2d(ngf * 2),
+				nn.ConvTranspose2d(ngf * 8, ngf * 4, (3, 3), (2, 2), 1, bias=False),
+				nn.BatchNorm2d(ngf * 4),
 				nn.ReLU(True),
 				# state size. (ngf*4) x 8 x 8
-				nn.ConvTranspose2d(ngf * 2, ngf * 2, (4, 3), (2, 2), 0, bias=False),
+				nn.ConvTranspose2d(ngf * 4, ngf * 2, (3, 3), (2, 2), (1, 2), bias=False),
 				nn.BatchNorm2d(ngf * 2),
 				nn.ReLU(True),
-				nn.ConvTranspose2d(ngf * 2, ngf, (4, 3), (2, 2), 0, bias=False),
+				nn.ConvTranspose2d(ngf * 2, ngf, (3, 3), (2, 2), (1, 2), bias=False),
 				nn.BatchNorm2d(ngf),
 				nn.ReLU(True),
 				# state size. (ngf*2) x 16 x 16
-				nn.ConvTranspose2d(ngf, nc, (5, 3), (1, 1), 0, bias=False),
+				nn.ConvTranspose2d(ngf, nc, (4, 3), (3, 2), (1, 1), bias=False),
 				nn.Tanh()
 				# state size. (nc) x 64 x 64
 			)

@@ -4,12 +4,12 @@ print(1500/6)
 with open('run.sh', 'w+') as file:
 	file.write('#!/usr/bin/env bash\n')
 
-	for nz in [4,8,16,32]:
-		for lr in [0.0005, 0.0002, '0.00005']:
-			for batch in [16,32,64,128,256]:
-				for ndf in [16,32,64,128,256]:
-					for ngf in [16,32,64,128,256]:
+	for nz in [16,32]:
+		for lr in [0.0002]:
+			for batch in [64,128]:
+				for ndf in [16,32]:
+					for ngf in [64,128]:
 						fc += 1
-						line = 'python3 cnn_gan_sym.py --niter 150 --nz {} --batchSize {} --ngf {} --ndf {} --lr {} {}\n'\
-							.format(nz, batch, ngf, ndf, lr, '&' if fc%250==0 else '&&')
+						line = 'python3 cnn_gan_sym.py --niter 100 --nz {} --batchSize {} --ngf {} --ndf {} --lr {} {}\n'\
+							.format(nz, batch, ngf, ndf, lr, '&' if fc%3==0 else '&&')
 						file.write(line)
