@@ -25,3 +25,14 @@ class MimicData(Dataset):
 		return self.demographics_[item],\
 			   self.diagnoses_[item],\
 			   self.procedures_mv_[item]
+
+class MicroShort(Dataset):
+
+	def __init__(self, bin_diag=True):
+		self.data_ = torch.from_numpy(np.load(os.path.join(LOC, 'microshort.npy'))).type(torch.float)
+
+	def __len__(self):
+		return len(self.data_)
+
+	def __getitem__(self, item):
+		return self.data_[item]

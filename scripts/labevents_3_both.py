@@ -68,7 +68,7 @@ with open('out/labevents_both_steps.tsv', 'w+') as fout:
 	for c in range(settings.MAX_H//settings.INTERVAL_H):
 		fout.write('{}\t{}\n'.format(c, interval_counts[c]))
 
-matrix = np.full((len(hamid_list), len(codes_list), len(interval_counts)), dtype=np.int8, fill_value=np.nan)
+matrix = np.full((len(hamid_list), len(codes_list), len(interval_counts)), dtype=np.float, fill_value=0)
 
 for o in obs:
 	hamid = o[0]

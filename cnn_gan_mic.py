@@ -9,9 +9,9 @@ import torch.optim as optim
 import torch.utils.data
 import torchvision.utils as vutils
 import numpy as np
-from dataset import dataset as ds
-from util.plot import plot_gan
-from layers import PrintSize
+from networks.dataset import dataset as ds
+from networks.util.plot import plot_gan
+from networks.layers import PrintSize
 
 
 def main():
@@ -45,7 +45,7 @@ def main():
 	if (torch.cuda.is_available() and ngpu > 0):
 		torch.cuda.manual_seed(opt.manualSeed)
 
-	filename = '_'.join(
+	filename = 'out/'+'_'.join(
 		[INFO, str(opt.manualSeed), str(opt.batchSize), str(opt.niter), str(opt.lr), str(opt.nz), str(opt.ngf),  str(opt.ndf)])
 
 	try:
@@ -53,7 +53,7 @@ def main():
 	except OSError:
 		pass
 
-	dataset = ds.MimicData()
+	dataset = ds.MicroShort()
 	assert dataset
 	dataloader = torch.utils.data.DataLoader(dataset, batch_size=opt.batchSize, shuffle=True, num_workers=int(opt.workers))
 
@@ -80,18 +80,14 @@ def main():
 			super(Generator, self).__init__()
 			self.main = nn.Sequential(
 				# input is Z, going into a convolution
-				nn.ConvTranspose2d(nz, ngf * 8, 4, 1, 0, bias=False),
-				nn.BatchNorm2d(ngf * 8),
-				nn.ReLU(True),
-				# state size. (ngf*8) x 4 x 4
-				nn.ConvTranspose2d(ngf * 8, ngf * 4, 4, 2, 1, bias=False),
+				nn.ConvTranspose2d(nz, ngf * 4, 4, 1, 0, bias=False),
 				nn.BatchNorm2d(ngf * 4),
 				nn.ReLU(True),
-				# state size. (ngf*4) x 8 x 8
+				# state size. (ngf*8) x 4 x 4
 				nn.ConvTranspose2d(ngf * 4, ngf * 2, 4, 2, 1, bias=False),
 				nn.BatchNorm2d(ngf * 2),
 				nn.ReLU(True),
-				# state size. (ngf*2) x 16 x 16
+				# state size. (ngf*4) x 8 x 8
 				nn.ConvTranspose2d(ngf * 2, ngf, 4, 2, 1, bias=False),
 				nn.BatchNorm2d(ngf),
 				nn.ReLU(True),
@@ -128,12 +124,8 @@ def main():
 				nn.Conv2d(ndf * 2, ndf * 4, 4, 2, 1, bias=False),
 				nn.BatchNorm2d(ndf * 4),
 				nn.LeakyReLU(0.2, inplace=True),
-				# state size. (ndf*4) x 8 x 8
-				nn.Conv2d(ndf * 4, ndf * 8, 4, 2, 1, bias=False),
-				nn.BatchNorm2d(ndf * 8),
-				nn.LeakyReLU(0.2, inplace=True),
 				# state size. (ndf*8) x 4 x 4
-				nn.Conv2d(ndf * 8, 1, 4, 1, 0, bias=False),
+				nn.Conv2d(ndf * 4, 1, 4, 1, 0, bias=False),
 				nn.Sigmoid()
 			)
 
@@ -173,8 +165,8 @@ def main():
 		edgz2l = []
 		for i, data in enumerate(dataloader, 0):
 
-			data = data[2]
-			data.unsqueeze_(1)
+			#data = data[2]
+			#data.unsqueeze_(1)
 			data.add_(-0.5).mul_(2)
 
 			# train with real
@@ -215,11 +207,12 @@ def main():
 			edgz1l.append(D_G_z1)
 			edgz2l.append(D_G_z2)
 
+			print('[%d/%d][%d/%d] Loss_D: %.4f Loss_G: %.4f D(x): %.4f D(G(z)): %.4f / %.4f'
+				  % (epoch, opt.niter, i, len(dataloader),
+					 errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
 
 			if i % 100 == 0:
-				print('[%d/%d][%d/%d] Loss_D: %.4f Loss_G: %.4f D(x): %.4f D(G(z)): %.4f / %.4f'
-					  % (epoch, opt.niter, i, len(dataloader),
-						 errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
+
 				vutils.save_image(real_cpu,
 						'%s/real_samples.png' % filename,
 						normalize=True,pad_value=0.5)
