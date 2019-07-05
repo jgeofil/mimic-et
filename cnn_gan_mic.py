@@ -19,9 +19,9 @@ def main():
 	parser.add_argument('--workers', type=int, help='number of data loading workers', default=1)
 
 	parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
-	parser.add_argument('--nz', type=int, default=8, help='size of the latent z vector')
-	parser.add_argument('--ngf', type=int, default=64, help='size of the latent z vector')
-	parser.add_argument('--ndf', type=int, default=64, help='size of the latent z vector')
+	parser.add_argument('--nz', type=int, default=4, help='size of the latent z vector')
+	parser.add_argument('--ngf', type=int, default=32, help='size of the latent z vector')
+	parser.add_argument('--ndf', type=int, default=32, help='size of the latent z vector')
 	parser.add_argument('--niter', type=int, default=25, help='number of epochs to train for')
 	parser.add_argument('--lr', type=float, default=0.0002, help='learning rate, default=0.0002')
 	parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
@@ -80,20 +80,20 @@ def main():
 			super(Generator, self).__init__()
 			self.main = nn.Sequential(
 				# input is Z, going into a convolution
-				nn.ConvTranspose2d(nz, ngf * 4, 4, 1, 0, bias=False),
+				nn.ConvTranspose2d(nz, ngf * 4, 4, 1, 0),
 				nn.BatchNorm2d(ngf * 4),
 				nn.ReLU(True),
 				# state size. (ngf*8) x 4 x 4
-				nn.ConvTranspose2d(ngf * 4, ngf * 2, 4, 2, 1, bias=False),
+				nn.ConvTranspose2d(ngf * 4, ngf * 2, 4, 2, 1),
 				nn.BatchNorm2d(ngf * 2),
 				nn.ReLU(True),
 				# state size. (ngf*4) x 8 x 8
-				nn.ConvTranspose2d(ngf * 2, ngf, 4, 2, 1, bias=False),
+				nn.ConvTranspose2d(ngf * 2, ngf, 4, 2, 1),
 				nn.BatchNorm2d(ngf),
 				nn.ReLU(True),
 				# state size. (ngf) x 32 x 32
-				nn.ConvTranspose2d(ngf, nc, 4, 2, 1, bias=False),
-				nn.Tanh()
+				nn.ConvTranspose2d(ngf, nc, 4, 2, 1),
+				nn.Hardtanh()
 				# state size. (nc) x 64 x 64
 			)
 
@@ -114,18 +114,18 @@ def main():
 			super(Discriminator, self).__init__()
 			self.main = nn.Sequential(
 				# input is (nc) x 64 x 64
-				nn.Conv2d(nc, ndf, 4, 2, 1, bias=False),
+				nn.Conv2d(nc, ndf, 4, 2, 1),
 				nn.LeakyReLU(0.2, inplace=True),
 				# state size. (ndf) x 32 x 32
-				nn.Conv2d(ndf, ndf * 2, 4, 2, 1, bias=False),
+				nn.Conv2d(ndf, ndf * 2, 4, 2, 1),
 				nn.BatchNorm2d(ndf * 2),
 				nn.LeakyReLU(0.2, inplace=True),
 				# state size. (ndf*2) x 16 x 16
-				nn.Conv2d(ndf * 2, ndf * 4, 4, 2, 1, bias=False),
+				nn.Conv2d(ndf * 2, ndf * 4, 4, 2, 1),
 				nn.BatchNorm2d(ndf * 4),
 				nn.LeakyReLU(0.2, inplace=True),
 				# state size. (ndf*8) x 4 x 4
-				nn.Conv2d(ndf * 4, 1, 4, 1, 0, bias=False),
+				nn.Conv2d(ndf * 4, 1, 4, 1, 0),
 				nn.Sigmoid()
 			)
 
@@ -211,13 +211,13 @@ def main():
 				  % (epoch, opt.niter, i, len(dataloader),
 					 errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
 
-			if i % 100 == 0:
+			if i % 10 == 0:
 
 				vutils.save_image(real_cpu,
 						'%s/real_samples.png' % filename,
 						normalize=True,pad_value=0.5)
 				fake = netG(fixed_noise)
-				fake = fake.detach().gt(0)
+				#fake = fake.detach().gt(0)
 				vutils.save_image(fake,
 						'%s/fake_samples_epoch_%03d.png' % (filename, epoch),
 						normalize=True,pad_value=0.5)
